@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
+import { createProjectContents } from './helpers/createProjectContents';
 
-import { createProject } from './helpers/createProject';
+import { createProjectDir } from './helpers/createProjectDir';
 import { prepareProject } from './helpers/prepareProject';
 import { QUESTIONS } from './questions';
 
 inquirer.prompt(QUESTIONS)
   .then(answers => {
-    const { projectPath } = prepareProject(answers);
+    const { templatePath, projectName, projectPath } = prepareProject(answers);
 
-    if (!createProject(projectPath)) {
+    if (!createProjectDir(projectPath)) {
       return;
     }
+
+    createProjectContents(templatePath, projectName)
   });
