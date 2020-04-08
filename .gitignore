@@ -1,6 +1,6 @@
 ### Node template
-# Project directories
-projects/**
+# Build
+lib
 
 # Logs
 logs

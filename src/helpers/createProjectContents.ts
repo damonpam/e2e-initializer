@@ -1,16 +1,32 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { ProjectData } from '../types/ProjectData';
 
-import { PROJECTS_DIR } from '../constants';
+import { render } from './render';
 
+// TODO pass this as arguments from CLI
 const SKIP_FILES = ['node_modules', '.template.json'];
 
-export function createProjectContents(templatePath: string, projectName: string): void {
-  const filesToCreate = fs.readdirSync(templatePath);
+function copyFile(origFilePath: string, destFilePath: string, options: ProjectData) {
+  const encoding = 'utf8';
+
+  let contents = fs.readFileSync(origFilePath, { encoding });
+  contents = render(contents, options);
+
+  fs.writeFileSync(destFilePath, contents, { encoding });
+}
+
+function copyDir(origFilePath: string, destFilePath: string, dirData: ProjectData) {
+  fs.mkdirSync(destFilePath);
+  createProjectContents(dirData);
+}
+
+export function createProjectContents(projectData: ProjectData): void {
+  const filesToCreate = fs.readdirSync(projectData.templatePath);
 
   filesToCreate.forEach(file => {
-    const origFilePath = path.join(templatePath, file);
-    const destFilePath = path.join(PROJECTS_DIR, projectName, file);
+    const origFilePath = path.join(projectData.templatePath, file);
+    const destFilePath = path.join(projectData.projectPath, file);
 
     if (SKIP_FILES.includes(file)) {
       return;
@@ -19,12 +35,15 @@ export function createProjectContents(templatePath: string, projectName: string)
     const stats = fs.statSync(origFilePath);
 
     if (stats.isFile()) {
-      fs.copyFileSync(origFilePath, destFilePath);
+      copyFile(origFilePath, destFilePath, projectData);
     }
 
     if (stats.isDirectory()) {
-      fs.mkdirSync(destFilePath);
-      createProjectContents(path.join(templatePath, file), path.join(projectName, file));
+      const projectPath = path.join(projectData.projectPath, file);
+      const templatePath = path.join(projectData.templatePath, file);
+      const dirData = { ...projectData, projectPath, templatePath };
+
+      copyDir(origFilePath, destFilePath, dirData);
     }
   });
 }
