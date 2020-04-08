@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 import { CURRENT_DIR, TEMPLATES_DIR } from '../constants';
 import { ProjectData } from '../types/ProjectData';
 
