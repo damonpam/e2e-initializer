@@ -1,0 +1,40 @@
+{
+  "name": "cucumber-steps-dictionary-generator",
+  "version": "1.0.0",
+  "description": "This package generates a dictionary from our cucumber (or another) step definition collection.",
+  "author": "damonpam",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "files": [
+    "lib"
+  ],
+  "bin": {
+    "bdd-dictionary-generator": "./lib/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:damonpam/testing-tools.git"
+  },
+  "scripts": {
+    "build": "tsc --build --force",
+    "test": "jest",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "json2md": "^1.7.1",
+    "yargs": "^16.0.3"
+  },
+  "devDependencies": {
+    "@types/fs-mock": "^1.1.29",
+    "@types/json2md": "^1.5.0",
+    "@types/yargs": "^15.0.7",
+    "fs-mock": "^1.2.1"
+  }
+}

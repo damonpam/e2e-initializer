@@ -1,0 +1,12 @@
+{
+  "command": {
+    "publish": {
+      "message": "Lerna Publish [skip ci]"
+    }
+  },
+  "ignoreChanges": ["**/__tests__/**", "*.md", "*.lock", ".npmrc", "tsconfig.json", "jest.config.js"],
+  "npmClient": "yarn",
+  "packages": ["packages/*"],
+  "useWorkspaces": true,
+  "version": "independent"
+}

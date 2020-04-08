@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "lib": ["es2015", "es2019", "dom"],
+    "target": "es6",
+    "module": "commonjs",
+    "strict": true,
+    "types": ["chai", "node", "webdriverio","@wdio/cucumber-framework"],
+    "esModuleInterop": true,
+    "outDir": "lib"
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["node_modules"]
+}

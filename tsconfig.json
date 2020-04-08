@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "lib": ["es2019", "DOM"],
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": true,
+    "inlineSourceMap": true,
+    "strict": true,
+    "types": ["node", "jest"],
+    "esModuleInterop": true,
+    "outDir": "lib"
+  },
+  "include": ["**/*.ts", "**/*.js"],
+  "exclude": ["node_modules", "tests"]
+}

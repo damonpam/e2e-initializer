@@ -1,0 +1,52 @@
+{
+  "name": "WebdriverIO_template",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "lint": "eslint '**/*.{ts,js}' --fix --max-warnings 0",
+    "pretest": "rimraf _results_",
+    "test": "wdio --cucumberOpts.tagExpression",
+    "test:debug": "DEBUG=true yarn test",
+    "report": "allure generate _results_/raw -o _results_/report && allure open _results_/report",
+    "cbtTest": "config/wdio wdio.cbt.conf.js --cucumberOpts.tagExpression"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/config": "^0.0.36",
+    "@types/cucumber": "^6.0.0",
+    "@types/node": "^14.11.2",
+    "@wdio/allure-reporter": "^6.5.2",
+    "@wdio/cli": "^6.5.2",
+    "@wdio/cucumber-framework": "^6.5.0",
+    "@wdio/local-runner": "^6.5.2",
+    "@wdio/spec-reporter": "^6.4.7",
+    "allure-commandline": "^2.13.0",
+    "chai": "^4.2.0",
+    "chai-webdriverio": "^1.0.0",
+    "chromedriver": "^85.0.1",
+    "config": "^3.3.1",
+    "log-beautify": "^1.2.0",
+    "rimraf": "^3.0.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3",
+    "wdio-chromedriver-service": "^6.0.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/parser": "^4.2.0",
+    "@wdio/crossbrowsertesting-service": "^6.1.4",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-chai-expect": "^2.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-simple-import-sort": "^5.0.1",
+    "eslint-plugin-wdio": "^6.0.12",
+    "gherkin-lint": "^4.1.3",
+    "husky": "^4.0.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
+  }
+}

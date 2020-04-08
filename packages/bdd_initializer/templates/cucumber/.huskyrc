@@ -1,0 +1,6 @@
+{
+    "hooks": {
+        "pre-commit": "tsc && lint-staged",
+        "post-commit": "git update-index --again"
+    }
+}
