@@ -1,22 +1,25 @@
+import fs from 'fs';
 import path from 'path';
-import fs from 'fs'
-import shell from 'shelljs'
+import shell from 'shelljs';
 import { ProjectData } from '../types/ProjectData';
+import {logger} from '../utils/Logger';
 
-export function postProcess({projectPath, templatePath}: ProjectData): boolean {
+export function postProcess({ projectPath, templatePath }: ProjectData): void {
   const isNode = fs.existsSync(path.join(templatePath, 'package.json'));
 
   if (isNode) {
+    logger.info('Installing project dependencies...', 'hammer_and_wrench');
+
     shell.cd(projectPath);
     const command = 'yarn install';
     const result = shell.exec(command);
 
     if (result.code !== 0) {
-      return false;
+      logger.error('Something wrong happened during the dependencies installation...');
     }
   }
 
-  // TODO commit all the framework setup to the project
-
-  return true;
+  /* TODO add more post process tasks, like:
+  / commit all the framework setup to the project
+  /... */
 }

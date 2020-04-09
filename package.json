@@ -11,21 +11,25 @@
     "build": "tsc && shx rm -rf lib/templates && shx cp -r templates lib"
   },
   "bin": {
-    "generate": "ascii-art image img/E2Y-logo.jpg && ./lib/index.js"
+    "bdd-initializer": "./lib/index.js"
   },
   "dependencies": {
-    "ascii-art": "^2.5.0",
-    "canvas": "^2.6.1",
     "chalk": "^4.0.0",
+    "clear": "^0.1.0",
     "ejs": "^3.0.2",
+    "figlet": "^1.3.0",
     "inquirer": "^7.1.0",
+    "lolcatjs": "^2.4.0",
+    "node-emoji": "^1.10.0",
     "shelljs": "^0.8.3"
   },
   "devDependencies": {
-    "@types/ascii-art": "^1.4.0",
+    "@types/clear": "^0.1.0",
     "@types/ejs": "^3.0.2",
+    "@types/figlet": "^1.2.0",
     "@types/inquirer": "^6.5.0",
     "@types/node": "^13.11.0",
+    "@types/node-emoji": "^1.8.1",
     "@types/shelljs": "^0.8.7",
     "shx": "^0.3.2",
     "ts-node": "^8.8.2",

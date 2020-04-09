@@ -1,6 +1,8 @@
 import * as fs from 'fs';
+import { emoji } from 'node-emoji';
 import path from 'path';
 import { ProjectData } from '../types/ProjectData';
+import { logger } from '../utils/Logger';
 
 import { render } from './render';
 
@@ -14,19 +16,22 @@ function copyFile(origFilePath: string, destFilePath: string, projectData: Proje
   contents = render(contents, projectData);
 
   fs.writeFileSync(destFilePath, contents, { encoding });
+  logger.info(`File "${destFilePath}" copied 👍`);
 }
 
-function copyDir(origFilePath: string, destFilePath: string, dirProjectData: ProjectData) {
+function copyDir(origFilePath: string, destFilePath: string, data: ProjectData) {
   fs.mkdirSync(destFilePath);
-  createProjectContents(dirProjectData);
+  logger.info(`Directory "${destFilePath}" build 👍`);
+
+  createProjectContents(data);
 }
 
-export function createProjectContents(projectData: ProjectData): void {
-  const filesToCreate = fs.readdirSync(projectData.templatePath);
+export function createProjectContents(data: ProjectData): void {
+  const filesToCreate = fs.readdirSync(data.templatePath);
 
   filesToCreate.forEach(file => {
-    const origFilePath = path.join(projectData.templatePath, file);
-    const destFilePath = path.join(projectData.projectPath, file);
+    const origFilePath = path.join(data.templatePath, file);
+    const destFilePath = path.join(data.projectPath, file);
 
     if (SKIP_FILES.includes(file)) {
       return;
@@ -35,13 +40,13 @@ export function createProjectContents(projectData: ProjectData): void {
     const stats = fs.statSync(origFilePath);
 
     if (stats.isFile()) {
-      copyFile(origFilePath, destFilePath, projectData);
+      copyFile(origFilePath, destFilePath, data);
     }
 
     if (stats.isDirectory()) {
-      const projectPath = path.join(projectData.projectPath, file);
-      const templatePath = path.join(projectData.templatePath, file);
-      const dirProjectData = { ...projectData, projectPath, templatePath };
+      const projectPath = path.join(data.projectPath, file);
+      const templatePath = path.join(data.templatePath, file);
+      const dirProjectData = { ...data, projectPath, templatePath };
 
       copyDir(origFilePath, destFilePath, dirProjectData);
     }

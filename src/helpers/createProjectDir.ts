@@ -1,13 +1,10 @@
-import chalk from 'chalk';
 import fs from 'fs';
+import { logger } from '../utils/Logger';
 
-export function createProjectDir(path: string) {
+export function createProjectDir(path: string): void {
   if (fs.existsSync(path)) {
-    console.log(chalk.red(`Project directory "${path}" exists. Delete or use another name.`));
-    return false;
+    logger.error(`Project directory "${path}" exists. Delete or use another name.`);
   }
 
   fs.mkdirSync(path);
-
-  return true;
 }
