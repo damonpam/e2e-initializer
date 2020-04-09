@@ -3,4 +3,6 @@ export interface ProjectData {
   projectPath: string,
   template: string
   templatePath: string
+
+  [k: string]: string
 }

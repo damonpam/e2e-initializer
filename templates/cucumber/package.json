@@ -1,7 +1,0 @@
-{
-  "name": "<%= name %>",
-  "version": "1.0.0",
-  "dependencies": {
-    "cucumber": "^6.0.5"
-  }
-}

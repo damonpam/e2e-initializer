@@ -7,10 +7,7 @@ class Logger {
   private warningChalk = chalk.yellow;
 
   public error(message: string, emoji: string = 'octagonal_sign'): void {
-    const errorCode = 1;
-    console.log(this.errorChalk(`${get(emoji)} Ops! ${message}`));
-
-    process.exit(errorCode);
+    throw new Error(this.errorChalk(`${get(emoji)} Ops! ${message}`));
   }
 
   public info(message: string, emoji?: string): void {

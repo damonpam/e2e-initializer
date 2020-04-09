@@ -4,7 +4,7 @@ import shell from 'shelljs';
 import { ProjectData } from '../types/ProjectData';
 import {logger} from '../utils/Logger';
 
-export function postProcess({ projectPath, templatePath }: ProjectData): void {
+export function postProcess(templatePath: string, projectPath: string): void {
   const isNode = fs.existsSync(path.join(templatePath, 'package.json'));
 
   if (isNode) {

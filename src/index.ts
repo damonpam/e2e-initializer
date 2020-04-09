@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { askProjectConfiguration } from './helpers/askProjectConfiguration';
-import { createProjectContents } from './helpers/createProjectContents';
-import { createProjectDir } from './helpers/createProjectDir';
+import { copyContent } from './helpers/copyContent';
+import { createDir } from './helpers/createDir';
 import { fetchProjectData } from './helpers/fetchProjectData';
 import { postProcess } from './helpers/postProcess';
 import { printBanner } from './helpers/printBanner';
@@ -16,14 +16,14 @@ async function run(): Promise<void> {
     logger.error('Configuration aborted...')
   }
 
-  const data = fetchProjectData(answers);
+  const { templatePath, projectPath, ...data } = fetchProjectData(answers);
 
   logger.info('Creating project...', 'construction');
 
-  createProjectDir(data.projectPath);
-  createProjectContents(data);
+  createDir(projectPath);
+  copyContent(templatePath, projectPath, data);
 
-  postProcess(data);
+  postProcess(templatePath, projectPath);
 
   logger.success('Project created successfully!');
 }
