@@ -1,5 +1,5 @@
 import path from 'path';
-import { CURRENT_DIR, TEMPLATES_DIR } from './constants';
+import { CURRENT_DIR, TEMPLATES_DIR } from '../constants';
 import { ProjectData } from '../types/ProjectData';
 
 export function fetchProjectData(answers: { [p: string]: {}; }): ProjectData {

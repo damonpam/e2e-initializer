@@ -10,7 +10,12 @@ import { logger } from './utils/Logger';
 async function run(): Promise<void> {
   printBanner('BDD initializer');
 
-  const answers = await askProjectConfiguration();
+  const {confirmed, ...answers} = await askProjectConfiguration();
+
+  if(!confirmed){
+    logger.error('Configuration aborted...')
+  }
+
   const data = fetchProjectData(answers);
 
   logger.info('Creating project...', 'construction');
