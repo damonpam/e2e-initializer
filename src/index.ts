@@ -1,19 +1,21 @@
 #!/usr/bin/env node
+import { COMMON_DIR } from './constants';
 import { askProjectConfiguration } from './helpers/askProjectConfiguration';
 import { copyContent } from './helpers/copyContent';
 import { createDir } from './helpers/createDir';
 import { fetchProjectData } from './helpers/fetchProjectData';
 import { postProcess } from './helpers/postProcess';
 import { printBanner } from './helpers/printBanner';
+import { printFooter } from './helpers/printFooter';
 import { logger } from './utils/Logger';
 
 async function run(): Promise<void> {
   printBanner('BDD initializer');
 
-  const {confirmed, ...answers} = await askProjectConfiguration();
+  const { confirmation, ...answers } = await askProjectConfiguration();
 
-  if(!confirmed){
-    logger.error('Configuration aborted...')
+  if (!confirmation) {
+    logger.exit('Ops! Configuration aborted...', 1);
   }
 
   const { templatePath, projectPath, ...data } = fetchProjectData(answers);
@@ -23,9 +25,13 @@ async function run(): Promise<void> {
   createDir(projectPath);
   copyContent(templatePath, projectPath, data);
 
+  copyContent(COMMON_DIR, projectPath);
+
   postProcess(templatePath, projectPath);
 
   logger.success('Project created successfully!');
+
+  printFooter('Happy testing dude!')
 }
 
 run();

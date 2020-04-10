@@ -1,4 +1,4 @@
-export interface ProjectData {
+export interface ProjectConfig {
   name: string
   projectPath: string,
   template: string

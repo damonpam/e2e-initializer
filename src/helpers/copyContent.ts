@@ -17,7 +17,7 @@ function copyFile(origFilePath: string, destFilePath: string, data?: { [k: strin
 
 function copyDir(origFilePath: string, destFilePath: string, data?: { [k: string]: string }) {
   fs.mkdirSync(destFilePath);
-  logger.info(`Directory "${destFilePath}" built 👍`);
+  logger.info(`Directory "${destFilePath}" created 👍`);
 
   copyContent(origFilePath, destFilePath, data);
 }

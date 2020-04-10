@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import shell from 'shelljs';
-import { ProjectData } from '../types/ProjectData';
+import { ProjectConfig } from '../types/ProjectConfig';
 import {logger} from '../utils/Logger';
 
 export function postProcess(templatePath: string, projectPath: string): void {

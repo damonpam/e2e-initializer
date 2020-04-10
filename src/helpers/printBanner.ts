@@ -1,12 +1,10 @@
 import clear from 'clear';
 import { Options, textSync } from 'figlet';
-
-const lolcatjs = require('lolcatjs');
+import { summer } from 'gradient-string';
 
 export function printBanner(text: string) {
   clear();
 
   const options: Options = { font: 'DOS Rebel', horizontalLayout: 'full', verticalLayout: 'fitted' };
-
-  lolcatjs.fromString(textSync(text, options));
+  console.log(summer(textSync(text, options)));
 }

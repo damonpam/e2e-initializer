@@ -1,10 +1,8 @@
 import * as fs from 'fs';
 import { emoji } from 'node-emoji';
-import { TEMPLATES_DIR } from '../constants';
+import { TEMPLATE_COMMON, TEMPLATES_DIR } from '../constants';
 
-const CHOICES = fs.readdirSync(TEMPLATES_DIR);
-
-// TODO remove coding-style
+const CHOICES = fs.readdirSync(TEMPLATES_DIR).filter((template => template !== TEMPLATE_COMMON));
 
 export const QUESTIONS = [
   {
@@ -21,7 +19,7 @@ export const QUESTIONS = [
     default: 'bdd'
   },
   {
-    name: 'confirmed',
+    name: 'confirmation',
     type: 'confirm',
     message: `${emoji.nerd_face} Is the configuration correct?`,
     default: 'yes'
