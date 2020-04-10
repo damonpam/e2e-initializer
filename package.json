@@ -1,6 +1,6 @@
 {
   "name": "bdd-initializer",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha1",
   "main": "index.js",
   "repository": "git@github.com:damonpam/bdd-initializer.git",
   "author": "Daniel Montesinos <daniel.montesinos@e2ycommerce.com>",
@@ -9,7 +9,9 @@
     "bdd-initializer": "./lib/index.js"
   },
   "scripts": {
+    "prebuild": "yarn test",
     "build": "tsc && shx rm -rf lib/templates && shx cp -r templates lib",
+    "prepublish": "yarn build",
     "prestart": "yarn build",
     "start": "node lib/index.js",
     "test": "jest --silent"
