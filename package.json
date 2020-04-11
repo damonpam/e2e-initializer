@@ -1,10 +1,14 @@
 {
   "name": "bdd-initializer",
-  "version": "1.0.1-alpha1",
-  "main": "index.js",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "repository": "git@github.com:damonpam/bdd-initializer.git",
   "author": "Daniel Montesinos <daniel.montesinos@e2ycommerce.com>",
   "license": "MIT",
+  "files": [
+    "lib"
+  ],
   "bin": {
     "bdd-initializer": "./lib/index.js"
   },
