@@ -27,4 +27,16 @@ describe('Create project directory', (): void => {
 
     expect(createBddDir).toThrowError(`Project directory "${path}" already exists.`);
   });
+
+  it('should fail 1', () => {
+    expect(true).toBeFalsy();
+  });
+
+  it('should fail 2', () => {
+    expect(true).toBeFalsy();
+  });
+
+  it('should fail 3', () => {
+    expect(true).toBeFalsy();
+  });
 });
